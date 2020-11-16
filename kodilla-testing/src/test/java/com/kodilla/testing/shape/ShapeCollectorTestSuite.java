@@ -53,6 +53,6 @@ public class ShapeCollectorTestSuite {
         shapeCollector.showFigures();
 
         //Then
-        System.out.println("Test OK");
+
     }
 }
