@@ -8,18 +8,14 @@ public class ShapeCollector {
 
     void addFigure (Shape shape) {
 
-        Circle circle = new Circle("Circle");
-        shapeList.add(circle);
+        Shape circle = new Circle("Circle");
+        shapeList.add(shape);
 
     }
     boolean removeFigure (Shape shape) {
-
-        boolean result = false;
-        if (shapeList.contains(shape)) {
-            shapeList.remove(shape);
-            result = true;
-        }
-        return result;
+        
+        Shape rectangle = new Rectangle();
+        return shapeList.remove(shape);
     }
 
     Shape getFigure (int n) {
@@ -31,7 +27,9 @@ public class ShapeCollector {
     }
     void showFigures() {
 
-        System.out.println("Circle, Rectangle, Triangle");
+        for (Shape shape : shapeList) {
+            System.out.println(shape);
+        }
     }
 
     public int getShapesQuantity() {
