@@ -3,6 +3,8 @@ package com.kodilla.testing.weather.mock;
 import com.kodilla.testing.weather.stub.Temperatures;                         // [2]
 import com.kodilla.testing.weather.stub.WeatherForecast;                      // [3]
 import org.junit.jupiter.api.Assertions;                                      // [4]
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;                                            // [5]
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -16,6 +18,19 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class WeatherForecastTestSuite {
+
+    private static int testCounter = 0;
+
+    @BeforeAll
+    public static void beforeAllTests() {
+        System.out.println("This is the beginning of tests.");
+    }
+
+    @BeforeEach
+    public void beforeEveryTest() {
+        testCounter++;
+        System.out.println("Preparing to execute test #" + testCounter);
+    }
 
     @Mock
     private Temperatures temperaturesMock;
@@ -51,11 +66,11 @@ public class WeatherForecastTestSuite {
         temperaturesMap.put("Wroclaw", 24.8);
         temperaturesMap.put("Warszawa", 25.2);
         temperaturesMap.put("Gdansk", 26.1);
-
+        when (temperaturesMock.getTemperatures()).thenReturn(temperaturesMap);
         WeatherForecast weatherForecast = new WeatherForecast(temperaturesMock);
 
         //When
-        double average = weatherForecast.calculateAverageTemp(temperaturesMap);     // [12]
+        double average = weatherForecast.calculateAverageTemp();     // [12]
 
         //Then
         Assertions.assertEquals(25, average);
@@ -72,11 +87,11 @@ public class WeatherForecastTestSuite {
         temperaturesMap.put("Wroclaw", 24.8);
         temperaturesMap.put("Warszawa", 25.2);
         temperaturesMap.put("Gdansk", 26.1);
-
+        when (temperaturesMock.getTemperatures()).thenReturn(temperaturesMap);
         WeatherForecast weatherForecast = new WeatherForecast(temperaturesMock);
 
         //When
-        double median = weatherForecast.calculateMedianTemp(temperaturesMap);     // [12]
+        double median = weatherForecast.calculateMedianTemp();     // [12]
 
         //Then
         Assertions.assertEquals(25.5, median);

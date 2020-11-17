@@ -18,17 +18,17 @@ public class WeatherForecast {
         }
         return resultMap;
     }
-    public double calculateAverageTemp(Map<String, Double> averageMap) {
+    public double calculateAverageTemp() {
         int sum = 0;
-        for (Map.Entry <String, Double> averageTemp : averageMap.entrySet()) {
+        for (Map.Entry <String, Double> averageTemp : temperatures.getTemperatures().entrySet()) {
             sum += averageTemp.getValue();
         }
-        double average = sum / averageMap.size();
+        double average = sum / temperatures.getTemperatures().entrySet().size();
         return average;
 
     }
-    public double calculateMedianTemp(Map <String, Double> medianMap) {
-        Double [] valuesSet = medianMap.values().toArray(new Double[medianMap.size()]);
+    public double calculateMedianTemp() {
+        Double [] valuesSet = temperatures.getTemperatures().values().toArray(new Double[temperatures.getTemperatures().size()]);
         double median = 0.0;
         double twoCenterValuesAvg = 0.0;
         Arrays.sort(valuesSet);
