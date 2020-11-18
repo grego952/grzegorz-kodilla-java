@@ -8,13 +8,11 @@ public class ShapeCollector {
 
     void addFigure (Shape shape) {
 
-        Shape circle = new Circle("Circle");
         shapeList.add(shape);
 
     }
     boolean removeFigure (Shape shape) {
-        
-        Shape rectangle = new Rectangle();
+
         return shapeList.remove(shape);
     }
 
