@@ -151,39 +151,77 @@ class StatisticsCalculationsTest {
         //Given
         StatisticsCalculations statisticsCalculations = new StatisticsCalculations();
 
+        when(statisticsMock.postsCount()).thenReturn(150);
+        when(statisticsMock.userNames()).thenReturn(generateListOfUsers(50));
 
         //When
-        int result = statisticsCalculations.averageNumberOfPostsPerUser;
+        statisticsCalculations.calculateAdvStatistics(statisticsMock);
 
 
         //Then
-        Assert.assertEquals(0, result);
+        Assert.assertEquals(3, statisticsCalculations.averageNumberOfPostsPerUser);
+    }
+
+    @Test
+    public void testAverageNumberOfPostsPer0Users() {
+        //Given
+        StatisticsCalculations statisticsCalculations = new StatisticsCalculations();
+
+        when(statisticsMock.postsCount()).thenReturn(150);
+        when(statisticsMock.userNames()).thenReturn(new ArrayList<>());
+
+        //When
+        statisticsCalculations.calculateAdvStatistics(statisticsMock);
+
+
+        //Then
+        Assert.assertEquals(0, statisticsCalculations.averageNumberOfPostsPerUser);
     }
 
     @Test
     public void testAverageNumberOfCommentsPerUser() {
         //Given
         StatisticsCalculations statisticsCalculations = new StatisticsCalculations();
+        when(statisticsMock.commentsCount()).thenReturn(50);
+        when(statisticsMock.userNames()).thenReturn(generateListOfUsers(10));
 
         //When
-        int result = statisticsCalculations.averageNumberOfCommentsPerUser;
+        statisticsCalculations.calculateAdvStatistics(statisticsMock);
 
 
         //Then
-        Assert.assertEquals(0, result);
+        Assert.assertEquals(5, statisticsCalculations.averageNumberOfCommentsPerUser);
     }
+    @Test
+    public void testAverageNumberOfCommentsPer0Users() {
+        //Given
+        StatisticsCalculations statisticsCalculations = new StatisticsCalculations();
+
+        when(statisticsMock.commentsCount()).thenReturn(20);
+        when(statisticsMock.userNames()).thenReturn(generateListOfUsers(8));
+
+        //When
+        statisticsCalculations.calculateAdvStatistics(statisticsMock);
+
+
+        //Then
+        Assert.assertEquals(2.5, statisticsCalculations.averageNumberOfCommentsPerUser, 0.5);
+    }
+
     @Test
     public void testAverageNumberOfCommentsPerPost() {
         //Given
         StatisticsCalculations statisticsCalculations = new StatisticsCalculations();
+        when(statisticsMock.postsCount()).thenReturn(100);
+        when(statisticsMock.commentsCount()).thenReturn(300);
 
 
         //When
-        int result = statisticsCalculations.averageNumberOfCommentsPerPost;
+        statisticsCalculations.calculateAdvStatistics(statisticsMock);
 
 
         //Then
-        Assert.assertEquals(0, result);
+        Assert.assertEquals(3, statisticsCalculations.averageNumberOfCommentsPerPost);
     }
 
     private List<String> generateListOfUsers(int numberOfUsers) {
