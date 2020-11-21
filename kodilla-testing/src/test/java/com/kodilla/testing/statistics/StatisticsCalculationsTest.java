@@ -149,81 +149,41 @@ class StatisticsCalculationsTest {
     @Test
     public void testAverageNumberOfPostsPerUser() {
         //Given
-        List<String> twentyUsers = generateListOfUsers(20);
-        int postCounter = 100;
+        StatisticsCalculations statisticsCalculations = new StatisticsCalculations();
 
 
         //When
-        int average = postCounter / twentyUsers.size();
-
-
-
-        //Then
-        Assert.assertEquals(5, average);
-    }
-    @Test
-    public void testAverageNumberOfPostsPer0Users() {
-        //Given
-        List<String> zeroUsers = new ArrayList<>();
-        int postCounter = 100;
-        int average = 0;
-
-        //When
-        if (zeroUsers.size() <= 0) {
-            average = 0;
-        } else {
-            average = postCounter / zeroUsers.size();
-        }
+        int result = statisticsCalculations.averageNumberOfPostsPerUser;
 
 
         //Then
-        Assert.assertEquals(0, average);
+        Assert.assertEquals(0, result);
     }
 
     @Test
     public void testAverageNumberOfCommentsPerUser() {
         //Given
-        List<String> twentyFiveUsers = generateListOfUsers(25);
-        int commentCounter = 100;
+        StatisticsCalculations statisticsCalculations = new StatisticsCalculations();
 
         //When
-        int average = commentCounter / twentyFiveUsers.size();
+        int result = statisticsCalculations.averageNumberOfCommentsPerUser;
 
 
         //Then
-        Assert.assertEquals(4, average);
-    }
-
-    @Test
-    public void testAverageNumberOfCommentsPer0Users() {
-        //Given
-        List<String> zeroUsers = new ArrayList<>();
-        int commentCounter = 100;
-        int average = 0;
-
-        //When
-        if (zeroUsers.size() <= 0) {
-            average = 0;
-        } else {
-            average = commentCounter / zeroUsers.size();
-        }
-
-
-        //Then
-        Assert.assertEquals(0, average);
+        Assert.assertEquals(0, result);
     }
     @Test
     public void testAverageNumberOfCommentsPerPost() {
         //Given
-        double postCounter = 50;
-        double commentCounter = 100;
+        StatisticsCalculations statisticsCalculations = new StatisticsCalculations();
+
 
         //When
-        double average = postCounter / commentCounter;
+        int result = statisticsCalculations.averageNumberOfCommentsPerPost;
 
 
         //Then
-        Assert.assertEquals(0.5, average, 0);
+        Assert.assertEquals(0, result);
     }
 
     private List<String> generateListOfUsers(int numberOfUsers) {
