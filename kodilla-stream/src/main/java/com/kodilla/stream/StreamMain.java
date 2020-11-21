@@ -1,30 +1,27 @@
 package com.kodilla.stream;
 
-import com.kodilla.stream.beautifier.PoemBeautifier;
-import com.kodilla.stream.beautifier.PoemDecorator;
-import com.kodilla.stream.lambda.ExpressionExecutor;
-import com.kodilla.stream.reference.FunctionalCalculator;
+import com.kodilla.stream.book.Book;
+import com.kodilla.stream.book.BookDirectory;
+import com.kodilla.stream.forumuser.Forum;
+import com.kodilla.stream.forumuser.ForumUser;
+
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class StreamMain {
-    public static void main(String[] args) {                                   // [4]
+    public static void main(String[] args) {
+        Forum forum = new Forum();
+        Map <Integer, ForumUser> forumUsers = forum.getUsers().stream()
+                .filter(forumUser -> forumUser.getSex() == 'M')
+                .filter(forumUser -> forumUser.getDateOFBirth().getYear() < 2000)
+                .filter(forumUser -> forumUser.getNumberOfPosts() >= 1)
+                .collect(Collectors.toMap(ForumUser::getUserID, forumUser -> forumUser));
 
-        PoemBeautifier poemBeautifier = new PoemBeautifier();
-        PoemDecorator beautifulString = (text) -> "Raz, dwa, trzy " + text;
-        PoemDecorator metal = (text) -> "<<<" + text +">>>";
-
-
-        String text1 = poemBeautifier.beautify("Koczkodan",String::toUpperCase);
-        String text2 = poemBeautifier.beautify("Karmazyn", String::toLowerCase);
-        String text3 = poemBeautifier.beautify("Baba Jaga patrzy", beautifulString);
-        String text4 = poemBeautifier.beautify("Metallica", metal);
-
-
-        System.out.println(text1);
-        System.out.println(text2);
-        System.out.println(text3);
-        System.out.println(text4);
-
-
+                forumUsers.entrySet().stream()
+                .map(entry -> entry.getKey() + " " + entry.getValue())
+                .forEach(System.out::println);
 
     }
 }
