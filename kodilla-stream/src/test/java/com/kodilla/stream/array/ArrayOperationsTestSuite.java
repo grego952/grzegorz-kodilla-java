@@ -12,18 +12,16 @@ public class ArrayOperationsTestSuite {
     void testGetAverage() {
         //Given
         int [] integers = {3, 3, 6};
+        int [] integers1 = {2, 5, 23, 54, 5, 7, 54, 32, 42, 88, 56, 56, 6, 9, 2, 56, 99, 4, 57, 11};
 
 
         //When
-        double sum = 0;
-        for (Integer num : integers) {
-            sum += num;
-        }
-        double expectedAverage = sum / integers.length;
-        double actualAverage = getAverage(integers);
+       double actualAverage = getAverage(integers);
+       double actualAverage1 = getAverage(integers1);
 
         //Then
-        assertEquals(expectedAverage, actualAverage);
+        assertEquals(4, actualAverage);
+        assertEquals(33.4, actualAverage1);
     }
 
 }
