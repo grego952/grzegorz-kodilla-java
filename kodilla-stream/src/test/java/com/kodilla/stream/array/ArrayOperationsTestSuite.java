@@ -11,7 +11,7 @@ public class ArrayOperationsTestSuite {
     @Test
     void testGetAverage() {
         //Given
-        int [] integers = {4, 7, 8, 11, 14, 22, 25, 16, 33, 41, 55, 12, 66, 43, 12, 10, 20, 30, 40, 50};
+        int [] integers = {3, 3, 6};
 
 
         //When
