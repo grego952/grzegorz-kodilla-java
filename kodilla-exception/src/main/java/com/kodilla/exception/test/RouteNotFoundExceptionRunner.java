@@ -19,13 +19,13 @@ public class RouteNotFoundExceptionRunner {
         openAirports.put("Warsaw", true);
 
         FlightSearch flightSearch = new FlightSearch(openAirports);
-        Flight flight = new Flight("Warsaw", "Moscow");
+        Flight flight = new Flight("Amsterdam", "Warsaw");
 
         try {
             flightSearch.findFlight(flight);
 
         } catch (RouteNotFoundException e) {
-            System.out.println("No airport");
+            System.out.println("Route unavailable");
         }
     }
 }

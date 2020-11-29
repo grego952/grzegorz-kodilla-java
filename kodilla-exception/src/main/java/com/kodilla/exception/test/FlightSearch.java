@@ -13,10 +13,17 @@ public class FlightSearch {
 
     public void findFlight(Flight flight) throws RouteNotFoundException {
 
-        if (airports.get(flight.getArrivalAirport())) {
-            System.out.println("Bon Voyage!");
+        if (airports.get(flight.getDepartureAirport())) {
+            System.out.println("Airport available for Departure");
         } else {
             throw new RouteNotFoundException();
         }
+
+        if (airports.get(flight.getArrivalAirport())) {
+            System.out.println("Airport available for Arrival");
+        } else {
+            throw new RouteNotFoundException();
+        }
+
     }
 }
