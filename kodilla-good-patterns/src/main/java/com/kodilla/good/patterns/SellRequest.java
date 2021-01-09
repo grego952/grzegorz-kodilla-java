@@ -1,7 +1,6 @@
 package com.kodilla.good.patterns;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class SellRequest {
 
