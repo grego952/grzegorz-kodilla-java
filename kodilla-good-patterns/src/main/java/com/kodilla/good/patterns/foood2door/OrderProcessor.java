@@ -1,30 +1,34 @@
 package com.kodilla.good.patterns.foood2door;
 
-import java.sql.SQLOutput;
-
 public class OrderProcessor {
 
     private Order order;
-    private Producer producer;
-    private Client client;
 
-    public OrderProcessor(Order order, Producer producer) {
+    public OrderProcessor(Order order) {
         this.order = order;
-        this.producer = producer;
     }
 
-    public Order getOrder() {
-        return order;
+    public boolean isOrderSent() {
+
+        if (order.isOrderedPayed()) {
+            return true;
+        }
+        return false;
     }
 
-    public Producer getProducer() {
-        return producer;
+    public boolean orderProcessed() {
+        if(!isOrderSent() && order.isOrderedPayed()) {
+            System.out.println("The order is being processed");
+            return true;
+        }
+        return false;
     }
 
-    public void orderRequest() {
-
-        System.out.println("Order request from " + client + " for " + order +" from " + producer);
-
+    public boolean orderCancellation() {
+        if (!order.isOrderedPayed()) {
+            System.out.println("Your order has been cancelled");
+            return true;
+        }
+        return false;
     }
-
 }

@@ -18,8 +18,7 @@ public class Order {
         productList.add(product);
     }
 
-    public boolean isOrderSent(Client client, Order order) {
-
+    public boolean isOrderedPayed() {
         return true;
     }
 }
