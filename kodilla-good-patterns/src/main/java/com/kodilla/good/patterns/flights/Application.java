@@ -6,7 +6,8 @@ public class Application {
 
         FlightScanner flightScanner = new FlightScanner();
 
-       flightScanner.findFlights("Warszawa", "Poznań", "Wrocław", FlightScanner.getFlightList());
+       flightScanner.findFlightsFrom("Warszawa");
+       flightScanner.findFlightsTo("Poznań");
+       flightScanner.findFlightsThrough("Wrocław", "Poznań");
     }
-
 }
