@@ -1,7 +1,5 @@
 package com.kodilla.good.patterns.foood2door;
 
-import java.time.LocalDateTime;
-
 public class GoodFoodShop implements Producer{
 
 
