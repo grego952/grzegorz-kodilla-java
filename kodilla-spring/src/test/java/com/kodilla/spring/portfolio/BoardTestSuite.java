@@ -5,6 +5,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest
 public class BoardTestSuite {
 
@@ -25,9 +27,10 @@ public class BoardTestSuite {
         String toDoTask = board.getToDoList().getTasks().get(0);
 
         //Then
-        System.out.println(doneTask);
-        System.out.println(inProgressTask);
-        System.out.println(toDoTask);
+
+        assertEquals("Walk the dog", doneTask);
+        assertEquals("Do the dishes", inProgressTask);
+        assertEquals("Do shopping", toDoTask);
 
     }
 
