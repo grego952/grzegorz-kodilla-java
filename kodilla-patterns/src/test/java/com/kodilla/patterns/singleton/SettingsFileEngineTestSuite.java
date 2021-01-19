@@ -52,6 +52,4 @@ public class SettingsFileEngineTestSuite {
         //Then
         assertTrue(result);
     }
-
-
 }
