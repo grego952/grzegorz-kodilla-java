@@ -1,20 +1,4 @@
-plugins {
-    id 'java'
-}
-
-group = 'com.kodilla'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
-
-repositories {
-    mavenCentral()
-}
-
+apply plugin: 'java'
 dependencies {
 
-    implementation 'junit:junit:4.12'
-}
-
-test {
-    useJUnitPlatform()
 }
