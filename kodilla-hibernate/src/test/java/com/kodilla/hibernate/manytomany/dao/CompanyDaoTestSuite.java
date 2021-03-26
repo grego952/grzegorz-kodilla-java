@@ -2,6 +2,7 @@ package com.kodilla.hibernate.manytomany.dao;
 
 import com.kodilla.hibernate.manytomany.Company;
 import com.kodilla.hibernate.manytomany.Employee;
+import com.kodilla.hibernate.manytomany.facade.EmploymentFacade;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +19,8 @@ public class CompanyDaoTestSuite {
     private CompanyDao companyDao;
     @Autowired
     private EmployeeDao employeeDao;
+    @Autowired
+    private EmploymentFacade employmentFacade;
 
     @Test
     void testSaveManyToMany() {
@@ -112,12 +115,51 @@ public class CompanyDaoTestSuite {
         companyDao.save(company1);
         companyDao.save(company2);
 
-        List <Company> threeCharsCompanies = companyDao.companiesWithThreeFirstChars("ROB");
+        List<Company> threeCharsCompanies = companyDao.companiesWithThreeFirstChars("ROB");
 
         //Then
         assertEquals(2, threeCharsCompanies.size());
 
         //CleanUp
         companyDao.deleteAll();
+    }
+
+    @Test
+    void findCompanyByPartName() {
+        //Given
+        Company company1 = new Company("Big Joe Carpets");
+        Company company2 = new Company("Small John Carpets");
+
+        //When
+        companyDao.save(company1);
+        companyDao.save(company2);
+
+        List<Company> numberOfCompanies = employmentFacade.findCompanyByPartName("Carp");
+
+        //Then
+        assertEquals(2, numberOfCompanies.size());
+
+        //CleanUp
+        companyDao.deleteAll();
+    }
+
+    @Test
+    void findEmployeeByPartName() {
+        //Given
+        Employee employee1 = new Employee("Tom", "Hardy");
+        Employee employee2 = new Employee("Jim", "Hardy");
+
+        //When
+        employeeDao.save(employee1);
+        employeeDao.save(employee2);
+
+        List <Employee> numberOfEmployees = employmentFacade.findEmployeeByPartName("Hard");
+
+        //Then
+        assertEquals(2, numberOfEmployees.size());
+
+        //CleanUp
+        employeeDao.deleteAll();
+
     }
 }
