@@ -2,6 +2,10 @@ package com.kodilla.stream.invoice.simple;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SimpleInvoiceTestSuite {
@@ -11,11 +15,11 @@ public class SimpleInvoiceTestSuite {
         SimpleInvoice invoice = new SimpleInvoice();
 
         //When
-        invoice.addItem(new SimpleItem(new SimpleProduct("Product 1", 17.28),2.0));
-        invoice.addItem(new SimpleItem(new SimpleProduct("Product 2", 11.99),3.5));
-        invoice.addItem(new SimpleItem(new SimpleProduct("Product 3", 6.49),5.0));
+        invoice.addItem(new SimpleItem(new SimpleProduct("Product 1", 17.28), 2.0));
+        invoice.addItem(new SimpleItem(new SimpleProduct("Product 2", 11.99), 3.5));
+        invoice.addItem(new SimpleItem(new SimpleProduct("Product 3", 6.49), 5.0));
 
         //Then
-        assertEquals(108.975, invoice.getValueToPay(),0.001);
+        assertEquals(108.975, invoice.getValueToPay(), 0.001);
     }
 }

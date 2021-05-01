@@ -3,6 +3,9 @@ package com.kodilla.stream.forum;
 import org.junit.jupiter.api.Test;
 
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ForumUserTestSuite {
@@ -105,6 +108,20 @@ public class ForumUserTestSuite {
         assertTrue(user1.getLocationsOfFriendsOfFriends().contains("Washington"));
         assertTrue(user1.getLocationsOfFriendsOfFriends().contains("Miami"));
         assertFalse(user1.getLocationsOfFriendsOfFriends().contains("Orlando"));
+    }
+    @Test
+    void testRemoveFriend() {
+        //Given
+        ForumUser forumUser1 = new ForumUser("Johny", "John Malkovich", "Seattle");
+        ForumUser forumUser2 = new ForumUser("Mark123", "Mark Johnson", "Chicago");
+        Set<ForumUser> friends = new HashSet<>();
+        friends.add(forumUser1);
+        friends.add(forumUser2);
 
+        //When
+        friends.remove(forumUser1);
+
+        //Then
+        assertEquals(1, friends.size());
     }
 }
